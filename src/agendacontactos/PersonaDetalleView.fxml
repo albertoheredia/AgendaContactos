@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -14,8 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="agendacontactos.VentanasController">
+<AnchorPane id="AnchorPane" fx:id="rootPersonaDetalleView" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agendacontactos.VentanasController">
    <children>
       <GridPane layoutX="-1.0" prefHeight="400.0" prefWidth="600.0">
         <columnConstraints>
@@ -59,15 +59,18 @@
             <CheckBox fx:id="checkBoxJubilado" mnemonicParsing="false" text="Jubilado" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <HBox prefHeight="100.0" prefWidth="200.0" translateX="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
-                  <RadioButton fx:id="radioButtonSoltero" mnemonicParsing="false" text="Soltero/a" translateY="8.0" />
-                  <RadioButton fx:id="radioButtonCasado" mnemonicParsing="false" text="Casado/a" translateX="15.0" translateY="8.0" />
-                  <RadioButton fx:id="radioButtonViudo" mnemonicParsing="false" text="Viudo/a" translateX="30.0" translateY="8.0" />
+                  <RadioButton fx:id="radioButtonSoltero" mnemonicParsing="false" text="Soltero/a" translateY="8.0">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="grupoEstadoCivil" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="radioButtonCasado" mnemonicParsing="false" text="Casado/a" toggleGroup="$grupoEstadoCivil" translateX="15.0" translateY="8.0" />
+                  <RadioButton fx:id="radioButtonViudo" mnemonicParsing="false" text="Viudo/a" toggleGroup="$grupoEstadoCivil" translateX="30.0" translateY="8.0" />
                </children>
             </HBox>
             <HBox prefHeight="37.0" prefWidth="249.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <children>
                   <ImageView fx:id="imageViewFoto" fitHeight="37.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button mnemonicParsing="false" text="Examinar" translateX="120.0" translateY="10.0" />
+                  <Button mnemonicParsing="false" onAction="#onActionButtonExaminar" text="Examinar" translateX="120.0" translateY="10.0" />
                </children>
             </HBox>
             <Button mnemonicParsing="false" onAction="#onActionButtonGuardar" text="Guardar" translateX="30.0" GridPane.columnIndex="2" />
